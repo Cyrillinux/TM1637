@@ -15,11 +15,11 @@ just using
   
   TM1637_printString("=-7°");
   
-see all examples in example TM1637Demo
+see all examples in example TM1637Demo, like   TM1637_setBrightness(display, 7), etc...
 
 * DISLAIMER OF ALL WARRANTIES *
 
-# Arduino 8051/89C5x pinout equivalent
+# Arduino 8051/89C5x pinout equivalent 
 
  D                                                                 D  A
                +-------------------------------+
