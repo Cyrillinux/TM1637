@@ -3,7 +3,9 @@ TM1637 Universal Arduino AVR 8051 Device
 
 Universal Arduino library for TM1637 (LED Driver)
 
-For Arduino AVR, 8051, STC89C51, STC89C51, STC15F2K32K2... 
+For Arduino AVR, 8051, STC89C51, STC89C51, STC15F2K32K2...
+
+See too : https://sourceforge.net/projects/stc89/
 
 Very easy using
 
