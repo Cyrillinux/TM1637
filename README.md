@@ -21,7 +21,7 @@ see all examples in example TM1637Demo
 
 # Arduino 8051/89C5x pinout equivalent
 
- D                                                                D  A
+ D                                                                 D  A
                +-------------------------------+
                |                               |
  0 P1.0 -------|  1  P1.0              VCC  40 |------ VCC
