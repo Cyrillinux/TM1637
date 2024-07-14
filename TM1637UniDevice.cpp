@@ -2,7 +2,7 @@
 
 #if defined(ARDUINO_ARCH_8051)
 
-const unsigned char TM1637_digit[] = {
+const unsigned char PROGMEM TM1637_digit[] = {
     // XGFEDCBA
     0x3F,  // 0b00111111,    // 0
     0x06,  // 0b00000110,    // 1
