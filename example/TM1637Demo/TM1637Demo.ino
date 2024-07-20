@@ -1,3 +1,12 @@
+/*
+ * TM1637 Demonstration
+ * Using : TM1637UniDevice library
+ * 4 x 7 segments display module HW-069
+ * pin D2 Clock and pin D3 DataIO
+ *
+ * DISCLAIMER OF ALL WARRANTIES
+ *
+ */
 #include <TM1637UniDevice.h>
 
 TM1637Device display; // New 7 seg display

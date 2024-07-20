@@ -1,27 +1,37 @@
 TM1637 Universal Arduino AVR 8051 Device
 ========================================
 
-V.0.0.2
+V.0.0.3
+Bugs fixed in AVR using.
 
 Universal Arduino library for TM1637 (LED Driver)
 
-Arduino architectures : AVR, 8051, STC89C51, STC89C51, STC15F2K32K2...
+Arduino achitectures : AVR, 8051, STC89C51, STC89C51, STC15F2K32K2...
 
 See too : https://sourceforge.net/projects/stc89/
 
 Very easy using
 
-just using
+just using 3 lines, example :
+
+  TM1637Device display;             // New 7 seg display
+
+  TM1637_init(display, 2, 3);       // Init TM1637 Display : CLK = pin 2 / DIO = pin 3
  
-  TM1637_printString("1234");
+  TM1637_printString("1234");       // Print 1234 on 4 x 7 segments module
   
-  TM1637_printString("=-7°");
+  or
+  
+  TM1637_printString("=-7°F");       // Print = - 7°F
   
 see all examples in example TM1637Demo, like   TM1637_setBrightness(display, 7), etc...
 
+
 * DISLAIMER OF ALL WARRANTIES *
 
-# Arduino 8051/89C5x pinout equivalent 
+# Arduino 8051/89C5x pinout equivalent
+
+D13 = BUILTIN_LED (P3_5)
 
  D                                                                 D  A
                +-------------------------------+

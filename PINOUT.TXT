@@ -1,6 +1,8 @@
 
 # Arduino 8051/89C5x pinout equivalent
 
+D13 = BUILTIN_LED (P3_5)
+
  D                                                                 D  A
                +-------------------------------+
                |                               |

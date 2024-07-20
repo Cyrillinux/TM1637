@@ -1,7 +1,5 @@
 #include <TM1637UniDevice.h>
 
-#if defined(ARDUINO_ARCH_8051)
-
 const unsigned char PROGMEM TM1637_digit[] = {
     // XGFEDCBA
     0x3F,  // 0b00111111,    // 0
@@ -41,6 +39,8 @@ const unsigned char PROGMEM TM1637_digit[] = {
     0x48,  // 0b01001000     // =
     0x46   // 0b01000110,    // +
 };
+
+#if defined(ARDUINO_ARCH_8051)
 
 // TM1637_start
 void TM1637_start(TM1637Device display) {
