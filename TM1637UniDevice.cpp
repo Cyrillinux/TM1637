@@ -100,8 +100,9 @@ void TM1637_subinit(TM1637Device display, unsigned char clk, unsigned char dio) 
     display->clk=clk;
     display->dio=dio;
     TM1637_setBrightness(display, 0x07);
-    // Function to get segment code for a given character
-    unsigned char TM1637_getDigit(unsigned char c) {
+}
+// Function to get segment code for a given character
+unsigned char TM1637_getDigit(unsigned char c) {
         if (c >= '0' && c <= '9') {
             return TM1637_digit[c - '0'];
         } else if (c >= 'A' && c <= 'F') {
@@ -138,7 +139,6 @@ void TM1637_subinit(TM1637Device display, unsigned char clk, unsigned char dio) 
             }
         }
     }
-}
 #else
 // TM1637_bitDelay
 void TM1637_bitDelay(void)
@@ -275,7 +275,7 @@ unsigned char TM1637_getDigit(unsigned char c) {
 
 // TM1637 Universal functions
 #define TM1637_clear(x) TM1637_printString(x, "    ");
-#define TM1637_init(x,y,z)  x = (TM1637Device) malloc(sizeof(__TM1637Device));TM1637_subinit(x, y, z)
+#define TM1637_init(x,y,z) x = (TM1637Device) malloc(sizeof(__TM1637Device));TM1637_subinit(x, y, z)
 
 // TM1637_printByteByPos
 void TM1637_printByteByPos(TM1637Device display, unsigned char pos, unsigned char data) {
