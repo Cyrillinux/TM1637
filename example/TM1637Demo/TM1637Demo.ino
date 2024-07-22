@@ -40,7 +40,11 @@ void loop() {
   delay(1000);
   TM1637_printString(display, "24:59");
   delay(1000);
+#if defined(ARDUINO_ARCH_8051)
   TM1637_printString(display, "-1°");
+#else
+  TM1637_printString(display, "-1*");
+#endif
   delay(1000);
   for(char b=7;b>0;b--) {
     TM1637_setBrightness(display, b);
