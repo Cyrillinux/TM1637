@@ -100,6 +100,44 @@ void TM1637_subinit(TM1637Device display, unsigned char clk, unsigned char dio) 
     display->clk=clk;
     display->dio=dio;
     TM1637_setBrightness(display, 0x07);
+    // Function to get segment code for a given character
+    unsigned char TM1637_getDigit(unsigned char c) {
+        if (c >= '0' && c <= '9') {
+            return TM1637_digit[c - '0'];
+        } else if (c >= 'A' && c <= 'F') {
+            return TM1637_digit[10 + c - 'A'];
+        } else if (c >= 'a' && c <= 'f') {
+            return TM1637_digit[10 + c - 'a'];
+        } else {
+            switch (c) {
+                case 'h': return TM1637_digit[16];
+                case 'H': return TM1637_digit[17];
+                case 'j': return TM1637_digit[18];
+                case 'J': return TM1637_digit[18];
+                case 'l': return TM1637_digit[19];
+                case 'L': return TM1637_digit[19];
+                case 'n': return TM1637_digit[20];
+                case 'o': return TM1637_digit[21];
+                case 'O': return TM1637_digit[21];
+                case 'p': return TM1637_digit[22];
+                case 'q': return TM1637_digit[23];
+                case 'R': return TM1637_digit[24];
+                case 'r': return TM1637_digit[24];
+                case 't': return TM1637_digit[25];
+                case 'u': return TM1637_digit[26];
+                case 'U': return TM1637_digit[27];
+                case 'y': return TM1637_digit[28];
+                case ' ': return TM1637_digit[29];
+                case '.': return TM1637_digit[30];
+                case '-': return TM1637_digit[31];
+                case '\xb0': return TM1637_digit[32];
+                case '|': return TM1637_digit[33];
+                case '=': return TM1637_digit[34];
+                case '+': return TM1637_digit[35];
+                default: return 0x00; // Default to all segments off for unrecognized characters
+            }
+        }
+    }
 }
 #else
 // TM1637_bitDelay
@@ -171,16 +209,67 @@ bool TM1637_writeByte(TM1637Device display, uint8_t b)
 // TM1637_subinit
 void TM1637_subinit(TM1637Device display, uint8_t pinClk, uint8_t pinDIO)
 {
-  // Copy the pin numbers
-  display->clk = pinClk;
-  display->dio = pinDIO;
-  // Set the pin direction and default value.
-  // Both pins are set as inputs, allowing the pull-up resistors to pull them up
+    // Copy the pin numbers
+    display->clk = pinClk;
+    display->dio = pinDIO;
+    // Set the pin direction and default value.
+    // Both pins are set as inputs, allowing the pull-up resistors to pull them up
     pinMode(display->clk, INPUT);
     pinMode(display->dio,INPUT);
-  digitalWrite(display->clk, LOW);
-  digitalWrite(display->dio, LOW);
-  TM1637_setBrightness(display, 0x07);
+    digitalWrite(display->clk, LOW);
+    digitalWrite(display->dio, LOW);
+    TM1637_setBrightness(display, 0x07);
+}
+// Function to get segment code for a given character
+unsigned char TM1637_getDigit(unsigned char c) {
+    switch (c) {
+        case '0': return TM1637_digit[0];
+        case '1': return TM1637_digit[1];
+        case '2': return TM1637_digit[2];
+        case '3': return TM1637_digit[3];
+        case '4': return TM1637_digit[4];
+        case '5': return TM1637_digit[5];
+        case '6': return TM1637_digit[6];
+        case '7': return TM1637_digit[7];
+        case '8': return TM1637_digit[8];
+        case '9': return TM1637_digit[9];
+        case 'A': return TM1637_digit[10];
+        case 'a': return TM1637_digit[10];
+        case 'B': return TM1637_digit[11];
+        case 'b': return TM1637_digit[11];
+        case 'C': return TM1637_digit[12];
+        case 'c': return TM1637_digit[12];
+        case 'D': return TM1637_digit[13];
+        case 'd': return TM1637_digit[13];
+        case 'E': return TM1637_digit[14];
+        case 'e': return TM1637_digit[14];
+        case 'F': return TM1637_digit[15];
+        case 'h': return TM1637_digit[16];
+        case 'H': return TM1637_digit[17];
+        case 'j': return TM1637_digit[18];
+        case 'J': return TM1637_digit[18];
+        case 'l': return TM1637_digit[19];
+        case 'L': return TM1637_digit[19];
+        case 'n': return TM1637_digit[20];
+        case 'o': return TM1637_digit[21];
+        case 'O': return TM1637_digit[21];
+        case 'p': return TM1637_digit[22];
+        case 'q': return TM1637_digit[23];
+        case 'R': return TM1637_digit[24];
+        case 'r': return TM1637_digit[24];
+        case 't': return TM1637_digit[25];
+        case 'u': return TM1637_digit[26];
+        case 'U': return TM1637_digit[27];
+        case 'y': return TM1637_digit[28];
+        case ' ': return TM1637_digit[29];
+        case '.': return TM1637_digit[30];
+        case '-': return TM1637_digit[31];
+        case '*': return TM1637_digit[32];
+        case '|': return TM1637_digit[33];
+        case '=': return TM1637_digit[34];
+        case '+': return TM1637_digit[35];
+        default: return 0x00; // Default to all segments off for unrecognized characters
+    }
 }
 #endif
 
@@ -188,44 +277,6 @@ void TM1637_subinit(TM1637Device display, uint8_t pinClk, uint8_t pinDIO)
 #define TM1637_clear(x) TM1637_printString(x, "    ");
 #define TM1637_init(x,y,z)  x = (TM1637Device) malloc(sizeof(__TM1637Device));TM1637_subinit(x, y, z)
 
-// Function to get segment code for a given character
-unsigned char TM1637_getDigit(char c) {
-    if (c >= '0' && c <= '9') {
-        return TM1637_digit[c - '0'];
-    } else if (c >= 'A' && c <= 'F') {
-        return TM1637_digit[10 + c - 'A'];
-    } else if (c >= 'a' && c <= 'f') {
-        return TM1637_digit[10 + c - 'a'];
-    } else {
-        switch (c) {
-            case 'h': return TM1637_digit[16];
-            case 'H': return TM1637_digit[17];
-            case 'j': return TM1637_digit[18];
-            case 'J': return TM1637_digit[18];
-            case 'l': return TM1637_digit[19];
-            case 'L': return TM1637_digit[19];
-            case 'n': return TM1637_digit[20];
-            case 'o': return TM1637_digit[21];
-            case 'O': return TM1637_digit[21];
-            case 'p': return TM1637_digit[22];
-            case 'q': return TM1637_digit[23];
-            case 'R': return TM1637_digit[24];
-            case 'r': return TM1637_digit[24];
-            case 't': return TM1637_digit[25];
-            case 'u': return TM1637_digit[26];
-            case 'U': return TM1637_digit[27];
-            case 'y': return TM1637_digit[28];
-            case ' ': return TM1637_digit[29];
-            case '.': return TM1637_digit[30];
-            case '-': return TM1637_digit[31];
-            case '\xb0': return TM1637_digit[32];
-            case '|': return TM1637_digit[33];
-            case '=': return TM1637_digit[34];
-            case '+': return TM1637_digit[35];
-            default: return 0x00; // Default to all segments off for unrecognized characters
-        }
-    }
-}
 // TM1637_printByteByPos
 void TM1637_printByteByPos(TM1637Device display, unsigned char pos, unsigned char data) {
     TM1637_start(display);
@@ -249,7 +300,7 @@ void TM1637_setBrightness(TM1637Device display, unsigned char brightness) {
     TM1637_stop(display);
 }
 // TM1637_printString
-void TM1637_printString(TM1637Device display, char *str) {
+void TM1637_printString(TM1637Device display, unsigned char *str) {
    unsigned char pos = 0;
    unsigned char len = strlen(str);
    char i;

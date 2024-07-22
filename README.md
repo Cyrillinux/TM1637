@@ -1,8 +1,9 @@
 TM1637 Universal Arduino AVR 8051 Device
 ========================================
 
-V.0.0.3
+V.0.0.4
 Bugs fixed in AVR using.
+Hexademal chars bugs fixed in AVR using.
 
 Universal Arduino library for TM1637 (LED Driver)
 

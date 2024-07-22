@@ -36,17 +36,17 @@ bool TM1637_writeByte(TM1637Device display, uint8_t b);
 void TM1637_subinit(TM1637Device display, uint8_t pinClk, uint8_t pinDIO);
 #endif
 
-// TM1637 Universal functions
+// TM1637 common functions
 #define TM1637_clear(x) TM1637_printString(x, "    ");
 #define TM1637_init(x,y,z)  x = (TM1637Device) malloc(sizeof(__TM1637Device));TM1637_subinit(x, y, z)
 
 // Function to get segment code for a given character
-unsigned char TM1637_getDigit(char c);
+unsigned char TM1637_getDigit(unsigned char c);
 // TM1637_printByteByPos
 void TM1637_printByteByPos(TM1637Device display, unsigned char pos, unsigned char data);
 // TM1637_setBrightness
 void TM1637_setBrightness(TM1637Device display, unsigned char brightness);
 // TM1637_printString
-void TM1637_printString(TM1637Device display, char *str);
+void TM1637_printString(TM1637Device display, unsigned char *str);
 
 #endif
