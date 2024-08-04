@@ -30,24 +30,27 @@ see all examples in example TM1637Demo, like   TM1637_setBrightness(display, 7),
 
 * DISLAIMER OF ALL WARRANTIES *
 
-# Arduino 8051/89C5x pinout equivalent
+# Arduino <=> 8051/89C5x/STC32G12K128 pinout equivalent
+(Ardui89 Cinque Uno/Due/128k R0)
 
-D13 = BUILTIN_LED (P3_5)
+D : Arduino digital pins
+A : Arduino analog pins
+LED_BULTIN : D13 (P3.5)
 
  D                                                                 D  A
-               +-------------------------------+
+               +---------------\/--------------+
                |                               |
- 0 P1.0 -------|  1  P1.0              VCC  40 |------ VCC
- 1 P1.1 -------|  2  P1.1             P0.0  39 |------ P0.0 (AD0) 31 A7
+ 7 P1.0 -------|  1  P1.0              VCC  40 |------ VCC
+ 8 P1.1 -------|  2  P1.1             P0.0  39 |------ P0.0 (AD0) 31 A7
  2 P1.2 -------|  3  P1.2             P0.1  38 |------ P0.1 (AD1) 30 A6
- 3 P1.3 -------|  4  P1.3             P0.2  37 |------ P0.2 (AD2) 29 A5
- 4 P1.4 -------|  5  P1.4             P0.3  36 |------ P0.3 (AD3) 28 A4
+ 3 P1.3 -------|  4  P1.3             P0.2  37 |------ P0.2 (AD2) 29 A5 SCL
+ 4 P1.4 -------|  5  P1.4             P0.3  36 |------ P0.3 (AD3) 28 A4 SDA
  5 P1.5 (MOSI)-|  6  P1.5 (MOSI)      P0.4  35 |------ P0.4 (AD4) 27 A3
  6 P1.6 (MISO)-|  7  P1.6 (MISO)      P0.5  34 |------ P0.5 (AD5) 26 A2
  7 P1.7 (SCK)--|  8  P1.7 (SCK)       P0.6  33 |------ P0.6 (AD6) 25 A1
     RST -------|  9  RST              P0.7  32 |------ P0.7 (AD7) 24 A0
- 8 P3.0 -------| 10  P3.0 (RXD)   (VPP) EA  31 |------ EA   (VPP)
- 9 P3.1 -------| 11  P3.1 (TXD)  (PRG) ALE  30 |------ ALE  (PRG)
+ 0 P3.0 -------| 10  P3.0 (RXD)   (VPP) EA  31 |------ EA   (VPP)
+ 1 P3.1 -------| 11  P3.1 (TXD)  (PRG) ALE  30 |------ ALE  (PRG)
 10 P3.2 -------| 12  P3.2 (INT0)     /PSEN  29 |------ /PSEN
 11 P3.3 -------| 13  P3.3 (INT1)      P2.7  28 |------ P2.7 (A15) 23
 12 P3.4 -------| 14  P3.4 (T0)        P2.6  27 |------ P2.6 (A14) 22
